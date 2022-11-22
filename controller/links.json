@@ -1,13 +1,164 @@
 {
-"p1":[{"dest":"n1","bw":"5mbps"},
-    {"dest":"n3","bw":"3mbps"}],
-"n1":[{"dest":"p1","bw":"5mbps"},
-    {"dest":"n2","bw":"3mbps"},
-    {"dest":"n3","bw":"3mbps"},
-    {"dest":"n4","bw":"3mbps"}],
-"n2":[{"dest":"n1","bw":"1mbps"},
-    {"dest":"n4","bw":"3mbps"}],
-"n3":[{"dest":"n1","bw":"1mbps"}],
-"n4":[{"dest":"n1","bw":"1mbps"},
-    {"dest":"p1","bw":"5mbps"}]
+  "p4": [
+    {
+      "dest": "p1",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "p2",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "p3",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n1",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n2",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n3",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n4",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n5",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n6",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n7",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n8",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n9",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n10",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n11",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n12",
+      "bw": "50mbps"
+    },
+    {
+      "dest": "n13",
+      "bw": "50mbps"
+    }
+  ],
+  "p1": [
+    {
+      "dest": "p4",
+      "bw": "42mbps"
+    }
+  ],
+  "p2": [
+    {
+      "dest": "p4",
+      "bw": "43mbps"
+    }
+  ],
+  "p3": [
+    {
+      "dest": "p4",
+      "bw": "36mbps"
+    }
+  ],
+  "n1": [
+    {
+      "dest": "p4",
+      "bw": "30mbps"
+    }
+  ],
+  "n2": [
+    {
+      "dest": "p4",
+      "bw": "40mbps"
+    }
+  ],
+  "n3": [
+    {
+      "dest": "p4",
+      "bw": "31mbps"
+    }
+  ],
+  "n4": [
+    {
+      "dest": "p4",
+      "bw": "29mbps"
+    }
+  ],
+  "n5": [
+    {
+      "dest": "p4",
+      "bw": "43mbps"
+    }
+  ],
+  "n6": [
+    {
+      "dest": "p4",
+      "bw": "25mbps"
+    }
+  ],
+  "n7": [
+    {
+      "dest": "p4",
+      "bw": "31mbps"
+    }
+  ],
+  "n8": [
+    {
+      "dest": "p4",
+      "bw": "39mbps"
+    }
+  ],
+  "n9": [
+    {
+      "dest": "p4",
+      "bw": "26mbps"
+    }
+  ],
+  "n10": [
+    {
+      "dest": "p4",
+      "bw": "47mbps"
+    }
+  ],
+  "n11": [
+    {
+      "dest": "p4",
+      "bw": "42mbps"
+    }
+  ],
+  "n12": [
+    {
+      "dest": "p4",
+      "bw": "49mbps"
+    }
+  ],
+  "n13": [
+    {
+      "dest": "p4",
+      "bw": "38mbps"
+    }
+  ]
 }
