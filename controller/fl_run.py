@@ -25,14 +25,16 @@ if __name__ == '__main__':
 	s_dim = 20 # refer to now_schedule
 	a_dim = 2 # <bandwidth, rate>
 	a_bound = 2
-	observation = pd.read_csv("now_schedule.csv").iloc[0]
+	# observation = pd.read_csv("now_schedule.csv").iloc[0]
 	# agent = DDPG(a_dim, s_dim, a_bound)
 	# agent.restore_net()
 	# action = agent.choose_action(observation)
-	action = [50, 1]
-	bw_val = int(action[0])
-	cpu_val = int(action[1] * 10)
-
+	# action = [50, 1]
+	# bw_val = int(action[0])
+	# cpu_val = int(action[1] * 10)
+	bw_val = 50
+	cpu_val = 10
+	
 	p4 = net.add_physical_node ('p4', 'wlan0', '192.168.1.102')
 	p4.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p4.mount_nfs (tag='dataset', mount_point='./dataset')
