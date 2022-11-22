@@ -1,0 +1,312 @@
+version: "2.1"
+volumes:
+  dml_app:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.1.108,ro"
+      device: ":/home/edge/Documents/Edge-TB/controller/dml_app"
+  dataset:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.1.108,ro"
+      device: ":/home/edge/Documents/Edge-TB/controller/dataset"
+services:
+  n1:
+    container_name: n1
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n1
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8001:4444"
+    cpuset: 0-0
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n2:
+    container_name: n2
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n2
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8002:4444"
+    cpuset: 1-1
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n3:
+    container_name: n3
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n3
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8003:4444"
+    cpuset: 2-3
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n4:
+    container_name: n4
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n4
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8004:4444"
+    cpuset: 4-4
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n5:
+    container_name: n5
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n5
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8005:4444"
+    cpuset: 5-5
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n6:
+    container_name: n6
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n6
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8006:4444"
+    cpuset: 6-7
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n7:
+    container_name: n7
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n7
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8007:4444"
+    cpuset: 8-8
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n8:
+    container_name: n8
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n8
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8008:4444"
+    cpuset: 9-9
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n9:
+    container_name: n9
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n9
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8009:4444"
+    cpuset: 10-11
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n10:
+    container_name: n10
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n10
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8010:4444"
+    cpuset: 12-12
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n11:
+    container_name: n11
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n11
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8011:4444"
+    cpuset: 13-13
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n12:
+    container_name: n12
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n12
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8012:4444"
+    cpuset: 14-15
+    mem_limit: 4G
+    command: python3 fl_trainer.py
+  n13:
+    container_name: n13
+    image: dml:v1.0
+    working_dir: /home/worker/dml_app
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NET_NODE_NAME=n13
+      - NET_AGENT_ADDRESS=192.168.1.100:0xffff
+      - NET_CTL_ADDRESS=192.168.1.108:3333
+    healthcheck:
+      test: curl -f http://localhost:4444/hi
+    volumes:
+      - ./dml_file:/home/worker/dml_file
+      - dml_app:/home/worker/dml_app/:ro
+      - dataset:/home/worker/dataset/:ro
+    ports:
+      - "8013:4444"
+    cpuset: 16-16
+    mem_limit: 4G
+    command: python3 fl_trainer.py
