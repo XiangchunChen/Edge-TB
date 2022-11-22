@@ -26,9 +26,10 @@ if __name__ == '__main__':
 	a_dim = 2 # <bandwidth, rate>
 	a_bound = 2
 	observation = pd.read_csv("now_schedule.csv").iloc[0]
-	agent = DDPG(a_dim, s_dim, a_bound)
-	agent.restore_net()
-	action = agent.choose_action(observation)
+	# agent = DDPG(a_dim, s_dim, a_bound)
+	# agent.restore_net()
+	# action = agent.choose_action(observation)
+	action = [50, 1]
 	bw_val = int(action[0])
 	cpu_val = int(action[1] * 10)
 
