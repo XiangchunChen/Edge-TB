@@ -7,7 +7,7 @@ from flask import Flask
 import ctl_utils
 import fl_manager
 from class_node import Net
-from ddpg_algo import DDPG
+
 
 if __name__ == '__main__':
 	dirname = os.path.abspath (os.path.dirname (__file__))
