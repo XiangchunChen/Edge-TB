@@ -27,9 +27,10 @@ if __name__ == '__main__':
 	a_bound = 2
 	observation = pd.read_csv("now_schedule.csv").iloc[0]
 	agent = DDPG(a_dim, s_dim, a_bound)
-	agent.restore()
+	agent.restore_net()
 	action = agent.choose_action(observation)
-	bw_val = action[0]
+	bw_val = int(action[0])
+	cpu_val = int(action[1] * 10)
 
 	p4 = net.add_physical_node ('p4', 'wlan0', '192.168.1.102')
 	p4.mount_nfs (tag='dml_app', mount_point='./dml_app')
@@ -54,7 +55,7 @@ if __name__ == '__main__':
 	p3.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p3.mount_nfs (tag='dataset', mount_point='./dataset')
 	p3.set_cmd (working_dir='dml_app', cmd=['python3', 'fl_trainer.py'])
-	net.asymmetrical_link (p4, p3,bw=bw_val, unit='mbps')
+	net.asymmetrical_link (p4, p3, bw=bw_val, unit='mbps')
 	net.asymmetrical_link (p3, p4, bw=random.randint (20, 50), unit='mbps')
 
 	emu = net.add_emulator ('3990x', '192.168.1.103')
@@ -62,7 +63,7 @@ if __name__ == '__main__':
 	emu.mount_nfs ('dataset')
 	for i in range (14):
 		#cpu = (i % 4) * 2
-		cpu = (i % 3)
+		cpu = (cpu_val % 3)
 		if cpu == 0:
 			cpu = 1
 		n = emu.add_node ('n' + str (i + 1), 'eth0', '/home/worker/dml_app',
