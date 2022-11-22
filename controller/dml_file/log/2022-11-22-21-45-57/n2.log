@@ -1,0 +1,19 @@
+ * Debugger is active!
+ * Debugger PIN: 345-753-589
+192.168.1.108 - - [22/Nov/2022 13:45:03] "POST //conf/dataset HTTP/1.1" 200 -
+192.168.1.108 - - [22/Nov/2022 13:45:34] "POST //conf/structure HTTP/1.1" 200 -
+192.168.1.109 - - [22/Nov/2022 13:47:13] "POST //train HTTP/1.1" 200 -
+Train: loss=2.1611892070770264, round=1,
+send weights to 192.168.1.109:4444, cost=0.02476644515991211
+192.168.1.109 - - [22/Nov/2022 13:49:09] "POST //train HTTP/1.1" 200 -
+Train: loss=1.3689211835861206, round=2,
+send weights to 192.168.1.109:4444, cost=0.021637916564941406
+192.168.1.109 - - [22/Nov/2022 13:51:05] "POST //train HTTP/1.1" 200 -
+Train: loss=0.9265407466888428, round=3,
+send weights to 192.168.1.109:4444, cost=0.019925832748413086
+192.168.1.109 - - [22/Nov/2022 13:53:01] "POST //train HTTP/1.1" 200 -
+Train: loss=0.7573055620193482, round=4,
+send weights to 192.168.1.109:4444, cost=0.022302865982055664
+192.168.1.109 - - [22/Nov/2022 13:54:55] "POST //train HTTP/1.1" 200 -
+Train: loss=0.6486605365276337, round=5,
+send weights to 192.168.1.109:4444, cost=0.0345304012298584

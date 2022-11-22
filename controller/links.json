@@ -68,97 +68,97 @@
   "p1": [
     {
       "dest": "p4",
-      "bw": "42mbps"
+      "bw": "48mbps"
     }
   ],
   "p2": [
     {
       "dest": "p4",
-      "bw": "43mbps"
+      "bw": "50mbps"
     }
   ],
   "p3": [
     {
       "dest": "p4",
-      "bw": "36mbps"
+      "bw": "50mbps"
     }
   ],
   "n1": [
     {
       "dest": "p4",
-      "bw": "30mbps"
+      "bw": "28mbps"
     }
   ],
   "n2": [
     {
       "dest": "p4",
-      "bw": "40mbps"
+      "bw": "23mbps"
     }
   ],
   "n3": [
     {
       "dest": "p4",
-      "bw": "31mbps"
+      "bw": "32mbps"
     }
   ],
   "n4": [
     {
       "dest": "p4",
-      "bw": "29mbps"
+      "bw": "49mbps"
     }
   ],
   "n5": [
     {
       "dest": "p4",
-      "bw": "43mbps"
+      "bw": "25mbps"
     }
   ],
   "n6": [
     {
       "dest": "p4",
-      "bw": "25mbps"
+      "bw": "32mbps"
     }
   ],
   "n7": [
     {
       "dest": "p4",
-      "bw": "31mbps"
+      "bw": "26mbps"
     }
   ],
   "n8": [
     {
       "dest": "p4",
-      "bw": "39mbps"
+      "bw": "48mbps"
     }
   ],
   "n9": [
     {
       "dest": "p4",
-      "bw": "26mbps"
+      "bw": "46mbps"
     }
   ],
   "n10": [
     {
       "dest": "p4",
-      "bw": "47mbps"
+      "bw": "20mbps"
     }
   ],
   "n11": [
     {
       "dest": "p4",
-      "bw": "42mbps"
+      "bw": "35mbps"
     }
   ],
   "n12": [
     {
       "dest": "p4",
-      "bw": "49mbps"
+      "bw": "27mbps"
     }
   ],
   "n13": [
     {
       "dest": "p4",
-      "bw": "38mbps"
+      "bw": "37mbps"
     }
   ]
 }

@@ -4,12 +4,12 @@ volumes:
     driver_opts:
       type: "nfs"
       o: "addr=192.168.1.108,ro"
-      device: ":/home/edge/Documents/Edge-TB/controller/dml_app"
+      device: ":/home/edge/Edge-TB/controller/dml_app"
   dataset:
     driver_opts:
       type: "nfs"
       o: "addr=192.168.1.108,ro"
-      device: ":/home/edge/Documents/Edge-TB/controller/dataset"
+      device: ":/home/edge/Edge-TB/controller/dataset"
 services:
   n1:
     container_name: n1

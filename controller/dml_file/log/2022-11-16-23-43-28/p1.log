@@ -1,0 +1,5 @@
+ * Debugger is active!
+ * Debugger PIN: 482-279-148
+192.168.1.108 - - [16/Nov/2022 23:42:39] "POST //conf/dataset HTTP/1.1" 200 -
+192.168.1.108 - - [16/Nov/2022 23:43:15] "POST //conf/structure HTTP/1.1" 200 -
+192.168.1.108 - - [16/Nov/2022 23:54:15] "GET //log HTTP/1.1" 200 -

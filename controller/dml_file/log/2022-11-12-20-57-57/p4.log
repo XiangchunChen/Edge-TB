@@ -1,0 +1,42 @@
+ * Debugger is active!
+ * Debugger PIN: 629-447-750
+192.168.1.108 - - [12/Nov/2022 07:57:18] "POST //conf/dataset HTTP/1.1" 200 -
+192.168.1.108 - - [12/Nov/2022 07:57:37] "POST //conf/structure HTTP/1.1" 200 -
+Aggregate: accuracy=10.0, round=0,
+192.168.1.108 - - [12/Nov/2022 07:59:16] "GET //start HTTP/1.1" 200 -
+send weights to 192.168.1.112:4444, cost=0.03278231620788574
+send weights to 192.168.1.100:8001, cost=0.04366946220397949
+send weights to 192.168.1.100:8002, cost=0.047547340393066406
+192.168.1.100 - - [12/Nov/2022 07:59:17] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 07:59:17] "POST //combine HTTP/1.1" 200 -
+Aggregate: accuracy=67.62000274658203, round=1,
+send weights to 192.168.1.112:4444, cost=0.025825977325439453
+send weights to 192.168.1.100:8001, cost=0.039986610412597656
+send weights to 192.168.1.100:8002, cost=0.03386068344116211
+192.168.1.112 - - [12/Nov/2022 08:01:11] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:01:12] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:01:12] "POST //combine HTTP/1.1" 200 -
+Aggregate: accuracy=84.5999984741211, round=2,
+send weights to 192.168.1.112:4444, cost=0.026467561721801758
+send weights to 192.168.1.100:8001, cost=0.03462362289428711
+send weights to 192.168.1.100:8002, cost=0.03983592987060547
+192.168.1.112 - - [12/Nov/2022 08:03:12] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:03:13] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:03:13] "POST //combine HTTP/1.1" 200 -
+Aggregate: accuracy=89.06999969482422, round=3,
+send weights to 192.168.1.112:4444, cost=0.02995586395263672
+send weights to 192.168.1.100:8001, cost=0.044661760330200195
+send weights to 192.168.1.100:8002, cost=0.042348623275756836
+192.168.1.112 - - [12/Nov/2022 08:05:02] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:05:03] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:05:03] "POST //combine HTTP/1.1" 200 -
+Aggregate: accuracy=91.08999633789062, round=4,
+send weights to 192.168.1.112:4444, cost=0.024904251098632812
+send weights to 192.168.1.100:8001, cost=0.04727005958557129
+send weights to 192.168.1.100:8002, cost=0.044281005859375
+192.168.1.112 - - [12/Nov/2022 08:07:00] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:07:01] "POST //combine HTTP/1.1" 200 -
+192.168.1.100 - - [12/Nov/2022 08:07:01] "POST //combine HTTP/1.1" 200 -
+Aggregate: accuracy=92.55999755859375, round=5,
+>>>>>training ended<<<<<
+192.168.1.108 - - [12/Nov/2022 08:09:02] "GET //log HTTP/1.1" 200 -
