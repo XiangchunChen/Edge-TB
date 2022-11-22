@@ -1,11 +1,13 @@
 import os
 import random
 
+import pandas as pd
 from flask import Flask
 
 import ctl_utils
 import fl_manager
 from class_node import Net
+from ddpg_algo import DDPG
 
 if __name__ == '__main__':
 	dirname = os.path.abspath (os.path.dirname (__file__))
@@ -20,6 +22,14 @@ if __name__ == '__main__':
 	ctl_utils.export_nfs (net)
 
 	dml_port = 4444
+	s_dim = 20 # refer to now_schedule
+	a_dim = 2 # <bandwidth, rate>
+	a_bound = 2
+	observation = pd.read_csv("now_schedule.csv").iloc[0]
+	agent = DDPG(a_dim, s_dim, a_bound)
+	agent.restore()
+	action = agent.choose_action(observation)
+	bw_val = action[0]
 
 	p4 = net.add_physical_node ('p4', 'wlan0', '192.168.1.102')
 	p4.mount_nfs (tag='dml_app', mount_point='./dml_app')
@@ -30,27 +40,27 @@ if __name__ == '__main__':
 	p1.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p1.mount_nfs (tag='dataset', mount_point='./dataset')
 	p1.set_cmd (working_dir='dml_app', cmd=['python3', 'fl_trainer.py'])
-	net.asymmetrical_link (p4, p1, bw=50, unit='mbps')
+	net.asymmetrical_link (p4, p1, bw=bw_val, unit='mbps')
 	net.asymmetrical_link (p1, p4, bw=random.randint (20, 50), unit='mbps')
 
 	p2 = net.add_physical_node (name='p2', nic='wlan0', ip='192.168.1.111')
 	p2.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p2.mount_nfs (tag='dataset', mount_point='./dataset')
 	p2.set_cmd (working_dir='dml_app', cmd=['python3', 'fl_trainer.py'])
-	net.asymmetrical_link (p4, p2, bw=50, unit='mbps')
+	net.asymmetrical_link (p4, p2,bw=bw_val, unit='mbps')
 	net.asymmetrical_link (p2, p4, bw=random.randint (20, 50), unit='mbps')
 
 	p3 = net.add_physical_node (name='p3', nic='wlan0', ip='192.168.1.108')
 	p3.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p3.mount_nfs (tag='dataset', mount_point='./dataset')
 	p3.set_cmd (working_dir='dml_app', cmd=['python3', 'fl_trainer.py'])
-	net.asymmetrical_link (p4, p3, bw=50, unit='mbps')
+	net.asymmetrical_link (p4, p3,bw=bw_val, unit='mbps')
 	net.asymmetrical_link (p3, p4, bw=random.randint (20, 50), unit='mbps')
 
 	emu = net.add_emulator ('3990x', '192.168.1.103')
 	emu.mount_nfs ('dml_app')
 	emu.mount_nfs ('dataset')
-	for i in range (13):
+	for i in range (14):
 		#cpu = (i % 4) * 2
 		cpu = (i % 3)
 		if cpu == 0:
@@ -61,7 +71,7 @@ if __name__ == '__main__':
 		n.add_nfs ('dml_app', '/home/worker/dml_app')
 		n.add_nfs ('dataset', '/home/worker/dataset')
 		n.add_port (dml_port, 8001 + i)
-		net.asymmetrical_link (p4, n, bw=50, unit='mbps')
+		net.asymmetrical_link (p4, n,bw=bw_val, unit='mbps')
 		net.asymmetrical_link (n, p4, bw=random.randint (20, 50), unit='mbps')
 
 	net.save_node_ip () #node_ip.json
