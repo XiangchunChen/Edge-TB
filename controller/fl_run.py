@@ -66,8 +66,8 @@ if __name__ == '__main__':
 		cpu = (cpu_val % 3)
 		if cpu == 0:
 			cpu = 1
-		if cpu > 23:
-			cpu = 23
+		if cpu > 10:
+			cpu = 10
 		n = emu.add_node ('n' + str (i + 1), 'eth0', '/home/worker/dml_app',
 			['python3', 'fl_trainer.py'], 'dml:v1.0', cpu=cpu, memory=4, unit='G')
 		n.add_volume ('./dml_file', '/home/worker/dml_file')
