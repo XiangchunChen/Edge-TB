@@ -23,14 +23,15 @@ if __name__ == '__main__':
 
 	dml_port = 4444
 	s_dim = 20 # refer to now_schedule
-	a_dim = 2 # <bandwidth, rate>
-	a_bound = 2
+	a_dim = 3 # <bandwidth, rate>
+	a_bound = 10
 	observation = pd.read_csv("now_schedule.csv").iloc[0]
 	agent = DDPG(a_dim, s_dim, a_bound)
 	agent.restore_net()
 	action = agent.choose_action(observation)
-	bw_val = int(action[0])
-	cpu_val = int(action[1] * 10)
+	bw_val = int(abs(action[0]))
+	rate_val = int(abs(action[1]))
+	cpu_val = int(abs(action[2]))
 
 	p4 = net.add_physical_node ('p4', 'wlan0', '192.168.1.109')
 	p4.mount_nfs (tag='dml_app', mount_point='./dml_app')
@@ -41,22 +42,22 @@ if __name__ == '__main__':
 	p1.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p1.mount_nfs (tag='dataset', mount_point='./dataset')
 	p1.set_cmd (working_dir='dml_app', cmd=['python3', 'fl_trainer.py'])
-	net.asymmetrical_link (p4, p1, bw=bw_val, unit='mbps')
-	net.asymmetrical_link (p1, p4, bw=random.randint (20, 50), unit='mbps')
+	net.asymmetrical_link (p4, p1, bw=50, unit='mbps')  #downlink
+	net.asymmetrical_link (p1, p4, bw=bw_val, unit='mbps')  #uplink
 
 	p2 = net.add_physical_node (name='p2', nic='wlan0', ip='192.168.1.111')
 	p2.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p2.mount_nfs (tag='dataset', mount_point='./dataset')
 	p2.set_cmd (working_dir='dml_app', cmd=['python3', 'fl_trainer.py'])
-	net.asymmetrical_link (p4, p2, bw=bw_val, unit='mbps')
-	net.asymmetrical_link (p2, p4, bw=random.randint (20, 50), unit='mbps')
+	net.asymmetrical_link (p4, p2, bw=50, unit='mbps')
+	net.asymmetrical_link (p2, p4, bw=bw_val, unit='mbps')
 
 	p3 = net.add_physical_node (name='p3', nic='wlan0', ip='192.168.1.112')
 	p3.mount_nfs (tag='dml_app', mount_point='./dml_app')
 	p3.mount_nfs (tag='dataset', mount_point='./dataset')
 	p3.set_cmd (working_dir='dml_app', cmd=['python3', 'fl_trainer.py'])
-	net.asymmetrical_link (p4, p3, bw=bw_val, unit='mbps')
-	net.asymmetrical_link (p3, p4, bw=random.randint (20, 50), unit='mbps')
+	net.asymmetrical_link (p4, p3, bw=50, unit='mbps')
+	net.asymmetrical_link (p3, p4, bw=bw_val, unit='mbps')
 
 	emu = net.add_emulator ('3990x', '192.168.1.100')
 	emu.mount_nfs ('dml_app')
@@ -68,14 +69,15 @@ if __name__ == '__main__':
 			cpu = 1
 		if cpu > 3:
 			cpu = 3
+		# Please revise it if you want to change the directory of EdgeTB
 		n = emu.add_node ('n' + str (i + 1), 'eth0', '/home/worker/dml_app',
 			['python3', 'fl_trainer.py'], 'dml:v1.0', cpu=cpu, memory=4, unit='G')
 		n.add_volume ('./dml_file', '/home/worker/dml_file')
 		n.add_nfs ('dml_app', '/home/worker/dml_app')
 		n.add_nfs ('dataset', '/home/worker/dataset')
 		n.add_port (dml_port, 8001 + i)
-		net.asymmetrical_link (p4, n, bw=bw_val, unit='mbps')
-		net.asymmetrical_link (n, p4, bw=random.randint (20, 50), unit='mbps')
+		net.asymmetrical_link (p4, n, bw=50, unit='mbps')
+		net.asymmetrical_link (n, p4, bw=bw_val, unit='mbps')
 
 	net.save_node_ip () #node_ip.json
 

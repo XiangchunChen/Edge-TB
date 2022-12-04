@@ -10,6 +10,7 @@ def read_json (filename):
 
 if __name__ == '__main__':
 	dirname = os.path.abspath (os.path.dirname (__file__))
+	# print("dirname:", dirname)
 	parser = argparse.ArgumentParser ()
 	parser.add_argument ('-f', '--file', dest='file', required=True, type=str,
 		help='./relative/path/to/conf/file')
