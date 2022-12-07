@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
 	dml_port = 4444
 	s_dim = 20 # refer to now_schedule
-	a_dim = 3 # <bandwidth, rate>
+	a_dim = 3 # <bandwidth, rate, cpu_cores>
 	a_bound = 10
 	observation = pd.read_csv("now_schedule.csv").iloc[0]
 	agent = DDPG(a_dim, s_dim, a_bound)

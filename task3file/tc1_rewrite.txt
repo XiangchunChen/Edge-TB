@@ -1,0 +1,11 @@
+How to learn python?
+
+
+Sammy
+
+
+Referencing the official tutorial is a good way to know. You don't need to memorize the usage of all APIs, just remember the most commonly used APIs.
+
+Try writing some programs yourself. With practice, you'll develop your own programming style, know how to solve common problems, and how to seek professional help.
+
+Another good way to know is to read other people's code (such as the code on github) and know how others solve problems.

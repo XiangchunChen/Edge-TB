@@ -10,8 +10,20 @@ import torch
 import dml_utils
 import worker_utils
 from nns.nn_mnist import net  # configurable parameter, from nns.whatever import net.
+from pruning.methods import filter_prune
+from pruning.utils import to_var, train, test, prune_rate
 
 dirname = os.path.abspath (os.path.dirname (__file__))
+
+# Hyper Parameters
+param = {
+	'pruning_perc': 10,
+	'batch_size': 128,
+	'test_batch_size': 100,
+	'num_epochs': 5,
+	'learning_rate': 0.001,
+	'weight_decay': 5e-4,
+}
 
 # listen on port 4444.
 # we do not recommend changing this port number.
@@ -20,6 +32,10 @@ dml_port = 4444
 ctl_addr = os.getenv ('NET_CTL_ADDRESS')
 agent_addr = os.getenv ('NET_AGENT_ADDRESS')
 node_name = os.getenv ('NET_NODE_NAME')
+
+# prune the weights
+masks = filter_prune(net, param['pruning_perc'])
+net.set_masks(masks)
 
 initial_weights = net.state_dict()
 # input_shape = nn.input_shape
