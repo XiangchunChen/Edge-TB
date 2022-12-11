@@ -59,25 +59,25 @@ if __name__ == '__main__':
 	net.asymmetrical_link (p4, p3, bw=50, unit='mbps')
 	net.asymmetrical_link (p3, p4, bw=bw_val, unit='mbps')
 
-	emu = net.add_emulator ('3990x', '192.168.1.100')
-	emu.mount_nfs ('dml_app')
-	emu.mount_nfs ('dataset')
-	for i in range (13):
-		#cpu = (i % 4) * 2
-		cpu = (cpu_val % 3)
-		if cpu == 0:
-			cpu = 1
-		if cpu > 3:
-			cpu = 3
-		# Please revise it if you want to change the directory of EdgeTB
-		n = emu.add_node ('n' + str (i + 1), 'eth0', '/home/worker/dml_app',
-			['python3', 'fl_trainer.py'], 'dml:v1.0', cpu=cpu, memory=4, unit='G')
-		n.add_volume ('./dml_file', '/home/worker/dml_file')
-		n.add_nfs ('dml_app', '/home/worker/dml_app')
-		n.add_nfs ('dataset', '/home/worker/dataset')
-		n.add_port (dml_port, 8001 + i)
-		net.asymmetrical_link (p4, n, bw=50, unit='mbps')
-		net.asymmetrical_link (n, p4, bw=bw_val, unit='mbps')
+	# emu = net.add_emulator ('3990x', '192.168.1.100')
+	# emu.mount_nfs ('dml_app')
+	# emu.mount_nfs ('dataset')
+	# for i in range (13):
+	# 	#cpu = (i % 4) * 2
+	# 	cpu = (cpu_val % 3)
+	# 	if cpu == 0:
+	# 		cpu = 1
+	# 	if cpu > 3:
+	# 		cpu = 3
+	# 	# Please revise it if you want to change the directory of EdgeTB
+	# 	n = emu.add_node ('n' + str (i + 1), 'eth0', '/home/worker/dml_app',
+	# 		['python3', 'fl_trainer.py'], 'dml:v1.0', cpu=cpu, memory=4, unit='G')
+	# 	n.add_volume ('./dml_file', '/home/worker/dml_file')
+	# 	n.add_nfs ('dml_app', '/home/worker/dml_app')
+	# 	n.add_nfs ('dataset', '/home/worker/dataset')
+	# 	n.add_port (dml_port, 8001 + i)
+	# 	net.asymmetrical_link (p4, n, bw=50, unit='mbps')
+	# 	net.asymmetrical_link (n, p4, bw=bw_val, unit='mbps')
 
 	net.save_node_ip () #node_ip.json
 
