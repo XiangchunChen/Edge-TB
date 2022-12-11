@@ -34,7 +34,7 @@ agent_addr = os.getenv ('NET_AGENT_ADDRESS')
 node_name = os.getenv ('NET_NODE_NAME')
 
 initial_weights = torch.quantization.quantize_dynamic(
-	net.state_dict(),  # the original model
+	net,  # the original model
 	{torch.nn.Linear},  # a set of layers to dynamically quantize
 	dtype=torch.qint8)
 
