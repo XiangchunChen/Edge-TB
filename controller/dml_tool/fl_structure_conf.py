@@ -108,9 +108,9 @@ if __name__ == '__main__':
 
 	node_ip_json = read_json ('../node_ip.json')
 	# Dict [str, str], emulator's name to emulator's ip.
-	_emulator = node_ip_json ['emulator']
-	# Dict [str, List], emulator's name to emulated node' name in this emulator.
-	_e_node = node_ip_json ['emulated_node']
+	# _emulator = node_ip_json ['emulator']
+	# # Dict [str, List], emulator's name to emulated node' name in this emulator.
+	# _e_node = node_ip_json ['emulated_node']
 	# Dict [str, str], physical node's name to physical node's ip.
 	_p_node = node_ip_json ['physical_node']
 
