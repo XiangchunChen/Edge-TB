@@ -40,8 +40,8 @@ node_name = os.getenv ('NET_NODE_NAME')
 # 	{torch.nn.Linear},  # a set of layers to dynamically quantize
 # 	dtype=torch.qint8)
 
-masks = filter_prune(net, param['pruning_perc'])
-net.set_masks(masks)
+# masks = filter_prune(net, param['pruning_perc'])
+# net.set_masks(masks)
 
 initial_weights = net.state_dict()
 
