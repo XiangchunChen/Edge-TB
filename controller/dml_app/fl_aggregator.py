@@ -33,11 +33,11 @@ ctl_addr = os.getenv ('NET_CTL_ADDRESS')
 agent_addr = os.getenv ('NET_AGENT_ADDRESS')
 node_name = os.getenv ('NET_NODE_NAME')
 
-# prune the weights
-masks = filter_prune(net, param['pruning_perc'])
-net.set_masks(masks)
+initial_weights = torch.quantization.quantize_dynamic(
+	net.state_dict(),  # the original model
+	{torch.nn.Linear},  # a set of layers to dynamically quantize
+	dtype=torch.qint8)
 
-initial_weights = net.state_dict()
 # input_shape = nn.input_shape
 log_file = os.path.abspath (os.path.join (dirname, '../dml_file/log/',
 	node_name + '.log'))
