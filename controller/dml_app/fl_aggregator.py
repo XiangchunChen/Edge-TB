@@ -33,6 +33,8 @@ ctl_addr = os.getenv ('NET_CTL_ADDRESS')
 agent_addr = os.getenv ('NET_AGENT_ADDRESS')
 node_name = os.getenv ('NET_NODE_NAME')
 
+torch.backends.quantized.engine = 'qnnpack'
+print(torch.backends.quantized.supported_engines)
 initial_weights = torch.quantization.quantize_dynamic(
 	net,  # the original model
 	{torch.nn.Linear},  # a set of layers to dynamically quantize
