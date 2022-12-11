@@ -22,16 +22,25 @@ if __name__ == '__main__':
 	ctl_utils.export_nfs (net)
 
 	dml_port = 4444
+	# s_dim = 20 # refer to now_schedule
+	# a_dim = 3 # <bandwidth, rate, cpu_cores>
+	# a_bound = 10
+	# observation = pd.read_csv("now_schedule.csv").iloc[0]
+	# agent = DDPG(a_dim, s_dim, a_bound)
+	# agent.restore_net()
+	# action = agent.choose_action(observation)
+	# bw_val = int(abs(action[0]))
+	# rate_val = int(abs(action[1]))
+	# cpu_val = int(abs(action[2]))
 	s_dim = 20 # refer to now_schedule
-	a_dim = 3 # <bandwidth, rate, cpu_cores>
-	a_bound = 10
+	a_dim = 2 # <bandwidth, rate>
+	a_bound = 2
 	observation = pd.read_csv("now_schedule.csv").iloc[0]
 	agent = DDPG(a_dim, s_dim, a_bound)
 	agent.restore_net()
 	action = agent.choose_action(observation)
-	bw_val = int(abs(action[0]))
-	rate_val = int(abs(action[1]))
-	cpu_val = int(abs(action[2]))
+	bw_val = int(action[0])
+	cpu_val = int(action[1] * 10)
 
 	p4 = net.add_physical_node ('p4', 'wlan0', '192.168.1.109')
 	p4.mount_nfs (tag='dml_app', mount_point='./dml_app')
